@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/ionic.css">
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+        var url = "http://localhost/projekppkpg/json.php";
+        $.getJSON(url, function(result) {
+        console.log(result);
+        $.each(result, function(i, field) {
+        var id = field.id;
+        var name = field.name;
+        var graduate = field.graduate;
+        var address = field.address;
+        var phone = field.phone;
+        
+        $("#listview").append("<a class='item' href='form.html?id=" + id + "&name=" + name + "&graduate=" + graduate + "&address=" + address + "&phone=" + phone + "'><span class='item-note'>" + phone + "</span><h2>" + name + " </h2><p>" + graduate + "</p></a>");
+        });
+        });
+        });
+        </script>
+    </head>
+    <body>
+        <div class="bar bar-header bar-positive" style="margin-bottom:80px;">
+            <a href="index.html" class="button button-clear">Home</a>
+            <h1 class="title">Read Database (JSON)</h1>
+        </div>
+        <br/>
+        <br/>
+        <ul class="list" id="listview">
+        </ul>
+    </body>
+</html>

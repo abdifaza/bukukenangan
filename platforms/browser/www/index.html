@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+
+		<script src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="js/camera.js"></script>
+        
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"> 
+        <link rel="stylesheet" href="css/camera.css" type="text/css">
+
+
+        <link rel="stylesheet" type="text/css" href="css/ionic.css">
+        <script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript">
+        	$(document).ready(function() {
+        	var url = "http://localhost/projekppkpg/json.php";
+        	$.getJSON(url, function(result) {
+        	console.log(result);
+        	$.each(result, function(i, field) {
+        	var id = field.id;
+        	var name = field.name;
+        	var graduate = field.graduate;
+        	var address = field.address;
+        	var phone = field.phone;
+        
+        	$("#listview").append("<a class='item' href='form.html?id=" + id + "&name=" + name + "&graduate=" + graduate + "&address=" + address + "&phone=" + phone + "'><span class='item-note'>" + phone + "</span><h2>" + name + " </h2><p>" + graduate + "</p></a>");
+        	});
+        	});
+        	});
+
+        	$(document).ready(function() {
+        	$("#insert").click(function() {
+            var name = $("#name").val();
+            var graduate = $("#graduate").val();
+            var address = $("#address").val();
+            var phone = $("#phone").val();
+            var dataString = "&name=" + name + "&graduate=" + graduate + "&address=" + address + "&phone=" + phone + "&insert=";
+            if ($.trim(name).length > 0 & $.trim(graduate).length > 0 & $.trim(address).length > 0 & $.trim(phone).length > 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/projekppkpg/insert.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    beforeSend: function() {
+                        $("#insert").val('Connecting...');
+                    },
+                    success: function(data) {
+                        if (data == "success") {
+                            alert("inserted");
+                            $("#insert").val('submit');
+                        } else if (data == "error") {
+                            alert("error");
+                        }
+                    }
+                });
+            }
+            return false;
+        });
+    });
+        </script>
+
+	</head>
+	<body>
+		<div data-role="tabs" id="tabs">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#one" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-bottom" data-ajax="false">ALBUM</a></li>
+					<li><a href="#two" class="ui-btn ui-shadow ui-corner-all ui-icon-user ui-btn-icon-bottom" data-ajax="false">ANGGOTA</a></li>
+					<li><a href="#three" class="ui-btn ui-shadow ui-corner-all ui-icon-camera ui-btn-icon-bottom" data-ajax="false">UPLOAD</a></li>
+				</ul>
+			</div>
+			
+			<div id="one" class="ui-body-d ui-content">
+				<h1>Album</h1>
+				<a href="#afc1" data-rel="popup" data-position-to="window" data-transition="fade">
+					<img class="popphoto" src="C:/Users/Faza Abdi/Documents/Phonegap/bukukenangan/www/Foto/afc1.jpg" style="width:30%">
+				</a>
+				<a href="#afc2" data-rel="popup" data-position-to="window" data-transition="fade">
+					<img class="popphoto" src="C:/Users/Faza Abdi/Documents/Phonegap/bukukenangan/www/Foto/afc2.jpg" style="width:30%">
+				</a>
+				<a href="#afc3" data-rel="popup" data-position-to="window" data-transition="fade">
+					<img class="popphoto" src="C:/Users/Faza Abdi/Documents/Phonegap/bukukenangan/www/Foto/afc3.jpg" style="width:30%">
+				</a>
+				<a href="#afc4" data-rel="popup" data-position-to="window" data-transition="fade">
+					<img class="popphoto" src="C:/Users/Faza Abdi/Documents/Phonegap/bukukenangan/www/Foto/afc4.jpg" style="width:30%">
+				</a>
+				<a href="#afc5" data-rel="popup" data-position-to="window" data-transition="fade">
+					<img class="popphoto" src="C:/Users/Faza Abdi/Documents/Phonegap/bukukenangan/www/Foto/afc5.jpg" style="width:30%">
+				</a>
+				
+				
+				<div data-role="popup" id="afc1" data-overlay-theme="b" data-theme="b" data-corners="false">
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+					<img class="popphoto" src="C:/Users/Faza Abdi/Documents/Phonegap/bukukenangan/www/Foto/afc1.jpg" style="max-height:512px; max-width:512px;">
+				</div>
+				<div data-role="popup" id="afc2" data-overlay-theme="b" data-theme="b" data-corners="false">
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+					<img class="popphoto" src="C:/Users/Faza Abdi/Documents/Phonegap/bukukenangan/www/Foto/afc2.jpg" style="max-height:512px;">
+				</div>
+				<div data-role="popup" id="afc3" data-overlay-theme="b" data-theme="b" data-corners="false">
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+					<img class="popphoto" src="C:/Users/Faza Abdi/Documents/Phonegap/bukukenangan/www/Foto/afc3.jpg" style="max-height:512px;">
+				</div>
+				<div data-role="popup" id="afc4" data-overlay-theme="b" data-theme="b" data-corners="false">
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+					<img class="popphoto" src="C:/Users/Faza Abdi/Documents/Phonegap/bukukenangan/www/Foto/afc4.jpg" style="max-height:512px;">
+				</div>
+				<div data-role="popup" id="afc5" data-overlay-theme="b" data-theme="b" data-corners="false">
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+					<img class="popphoto" src="C:/Users/Faza Abdi/Documents/Phonegap/bukukenangan/www/Foto/afc5.jpg" style="max-height:512px;">
+				</div>
+			
+			</div>
+
+			<div id="two">
+				<h1>Anggota</h1>
+				<br/>
+				<br/>
+				<ul class="list" id="listview"></ul>
+				
+    <br/>
+    <br/>
+    <div class="list">
+        <input type="hidden" id="id" value="" />
+        <div class="item">
+            <label>Name</label>
+            <input type="text" id="name" value="" />
+        </div>
+
+        <div class="item">
+            <label>Graduate</label>
+            <input type="text" id="graduate" value="" />
+        </div>
+
+        <div class="item">
+            <label>Address</label>
+            <input type="text" id="address" value="" />
+        </div>
+        
+        <div class="item">
+            <label>Phone</label>
+            <input type="text" id="phone" value="" />
+        </div>
+
+        <div class="item">
+            <input type="button" id="insert" class="button button-block" value="Insert" />
+        </div>
+    </div>
+			</div>
+			
+			<div id="three" class="ui-body-d ui-content">
+				<div onload="onLoad()">
+				<h1>Upload</h1>
+				<div data-role="collapsible-set" data-inset="false" data-mini="true">
+					<div data-role="collapsible">
+						<h3>Picture saving options</h3>
+						<label for="encod_input" data-mini="true">Choose encoding type:</label>
+						<select id="encod_input" name="encod_input" data-mini="true">
+							<option value="0" selected="selected">JPEG</option>
+                            <option value="1">PNG</option>
+                        </select>
+                                  
+                        <label for="save_input" data-mini="true">Save picture to photo album</label>
+                        <select name="save_input" id="save_input" data-role="slider" data-mini="true" data-theme="a" data-track-theme="a">
+                            <option value="false">No</option>
+                            <option value="true" selected="selected">Yes</option>
+                        </select>
+                    </div>
+                        
+                    <div data-role="collapsible">
+                    	<h3>Picture opening options</h3>
+                    	<label for="media_input" data-mini="true">Choose media type:</label>
+                    	<select id="media_input" name="media_input" data-mini="true">
+                    		<option value="0" selected="selected">Pictures</option>
+                            <option value="1">Videos</option>
+                            <option value="2">All media</option>
+                        </select>
+                    </div>
+                </div>
+
+				<a href="#" data-role="button" id="open_camera_button">Capture a photo with camera</a>
+				<a href="#" data-role="button" id="open_lib_button">Open Photo Library</a>
+				<a href="#" data-role="button" id="open_alb_button">Open saved photo album</a>
+
+				<h3>Result picture:</h3>
+                <img id="pic" src="" style="display: none; border: 2px black;"/>
+            </div>
+		</div>
+
+		</div>
+</body>
+</html>
+
